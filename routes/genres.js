@@ -1,7 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 const express = require('express');
-const { join } = require('path');
 const router = express.Router();
 
 
