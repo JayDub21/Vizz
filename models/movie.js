@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('joi-oid');
 const mongoose = require('mongoose');
 const {genreSchema} = require('./genre');
 
@@ -33,7 +33,7 @@ const validateMovie = (movie) => {
     // Joi.object and schema.validate is new way to write
     const schema = Joi.object({
         title: Joi.string().min(5).max(255).required(),
-        genreId: Joi.string().required(),
+        genreId: Joi.objectId().required(),
         numberInStock: Joi.number().min(0).required(),
         dailyRentalRate: Joi.number().min(0).required()
 

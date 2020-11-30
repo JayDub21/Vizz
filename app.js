@@ -1,3 +1,4 @@
+const Joi = require('joi-oid');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
