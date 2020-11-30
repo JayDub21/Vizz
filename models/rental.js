@@ -1,5 +1,6 @@
-const Joi = require('joi');
+const Joi = require('joi-oid'); // joi-oid is the only way I've found to work.
 const mongoose = require('mongoose');
+
 
 const Rental = mongoose.model('Rental', new mongoose.Schema({
   customer: { 
@@ -58,8 +59,8 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
 const validateRental = (rental) => {
     // Joi.object and schema.validate is new way to write
     const schema = Joi.object({
-        customerId: Joi.string().required(),
-        movieId: Joi.string().required()
+        customerId: Joi.objectId().required(),
+        movieId: Joi.objectId().required()
     })
     return schema.validate(rental)
 }
