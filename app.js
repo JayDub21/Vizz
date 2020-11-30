@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
+const movies = require('./routes/movies');
 
 mongoose.connect('mongodb://localhost/vizz',  { useNewUrlParser: true})
     .then(() => console.log('Connected to MongoDB...'))
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost/vizz',  { useNewUrlParser: true})
 app.use(express.json());
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
+app.use('/api/movies', movies);
 
 app.get('/', (req, res) => {
   res.send('Hello World!!');
