@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const express = require('express');
-const app = express();
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
 const movies = require('./routes/movies');
+const express = require('express');
+const app = express();
 
 mongoose.connect('mongodb://localhost/vizz',  { useNewUrlParser: true})
     .then(() => console.log('Connected to MongoDB...'))
