@@ -1,6 +1,8 @@
 const error = require('./middleware/error');
 const Joi = require('joi-oid');
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
 const movies = require('./routes/movies');
@@ -16,9 +18,11 @@ if (!config.get('jwtPrivateKey')) {
     process.exit(1);
 }
 
+
 mongoose.connect('mongodb://localhost/vizz',  { useNewUrlParser: true})
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
+
 
 app.use(express.json());
 app.use('/api/genres', genres);
