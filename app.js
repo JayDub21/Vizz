@@ -1,4 +1,5 @@
 const error = require('./middleware/error');
+require('express-async-errors');
 const Joi = require('joi-oid');
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
