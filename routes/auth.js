@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+// User Login
 router.post('/', async (req, res) => {
 
   const { error } = validate(req.body);
