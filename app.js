@@ -1,3 +1,4 @@
+const error = require('./middleware/error');
 const Joi = require('joi-oid');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
@@ -26,6 +27,7 @@ app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use(error);
 
 app.get('/', (req, res) => {
   res.send('Hello World!!');
