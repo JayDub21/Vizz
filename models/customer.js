@@ -24,8 +24,8 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
 const validateCustomer = (customer) => {
     // Joi.object and schema.validate is new way to write
     const schema = Joi.object({
-        name: Joi.string().min(3).max(50).required(),
-        phone: Joi.string().min(3).max(50).required(),
+        name: Joi.string().min(5).max(50).required(),
+        phone: Joi.string().min(5).max(50).required(),
         isGold: Joi.boolean()
     })
     return schema.validate(customer)

@@ -6,9 +6,9 @@ describe('auth genre middleware', () => {
     beforeEach(() => { server = require('../../index'); })
     afterEach(async () => { 
         await Genre.remove({});
-        server.close(); 
+        await server.close(); 
     });
-
+console.log(server);
     let token; 
 
     const exec = () => {
