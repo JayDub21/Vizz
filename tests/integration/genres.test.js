@@ -47,6 +47,10 @@ describe('/api/genres', () => {
         });
     });
     describe('POST /', () => {
+        
+        // Define the happy path, and then inside each tes, we change 
+        // one parameter that celarly aligns witht he name of that test.
+
         let token;
         let name;
 
@@ -54,7 +58,7 @@ describe('/api/genres', () => {
             return await request(server)
             .post('/api/genres')
             .set('x-auth-token', token)
-            .send({ name: name });
+            .send({ name }); // name: name | in es6 if the same = name
         }
 
         beforeEach(() => {
@@ -79,11 +83,11 @@ describe('/api/genres', () => {
         });
 
         it('should return 400 if genre is < 50 characters', async () => {
-            // 500 status could result if Joi validation isn't present on model
             name = new Array(52).join('a');
 
             const res = await exec();
-        
+
+             // 500 status could result if Joi validation isn't present on model
             expect(res.status).toBe(400);
         });
         
