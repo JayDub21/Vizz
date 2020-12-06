@@ -3,7 +3,7 @@ const {Genre} = require('../../../models/genre');
 const request =require('supertest');
 
 describe('auth middleware', () => {
-   
+
     beforeEach(() => {
         server = require('../../../index');
     });
@@ -11,9 +11,9 @@ describe('auth middleware', () => {
         await Genre.remove({});
         await server.close(); 
     });
-   
-    let token; 
 
+    let token; 
+   
     const exec = () => {
         return request(server)
         .post('/api/genres')
