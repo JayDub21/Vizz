@@ -1,11 +1,11 @@
 const request = require('supertest');
-const {Genre} = require('../../models/genre');
-const {User} = require('../../models/user');
+const {Genre} = require('../../../models/genre');
+const {User} = require('../../../models/user');
 
 let server;
 
 describe('/api/genres', () => {
-    beforeEach(() => { server = require('../../index'); })
+    beforeEach(() => { server = require('../../../index'); })
     afterEach(async () => { 
         server.close();
         await Genre.remove({});
@@ -106,4 +106,7 @@ describe('/api/genres', () => {
             expect(res.body).toHaveProperty('name', 'genre1');
         });
     });
+
+
+    
 });
