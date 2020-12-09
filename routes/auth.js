@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 
   });
 
-  const validate= (req) => {
+  function validate (req) {
     // Joi.object and schema.validate is new way to write
     const schema = Joi.object({
         email: Joi.string().min(5).max(255).required().email(),
