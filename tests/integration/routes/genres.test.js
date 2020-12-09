@@ -9,7 +9,7 @@ describe('/api/genres', () => {
   beforeEach(() => { server = require('../../../index'); })
   afterEach(async () => { 
     await server.close(); 
-    await Genre.remove({});
+    await Genre.deleteMany({});
   });
 
   describe('GET /', () => {
@@ -70,17 +70,17 @@ describe('/api/genres', () => {
         .send({ name });
     }
 
-    beforeEach(() => {
-      token = new User().generateAuthToken();      
+    beforeEach(async () => {
+      token = await new User().generateAuthToken();      
       name = 'genre1'; 
     })
 
     it('should return 401 if client is not logged in', async () => {
-      token = ''; 
+      token = ' '; 
 
       const res = await exec();
 
-      expect(res.status).toBe(401);
+    expect(res.status).toBe(401);
     });
 
     it('should return 400 if genre is less than 5 characters', async () => {

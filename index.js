@@ -1,9 +1,11 @@
 const winston = require('winston');
+const config = require("config");
 const Joi = require('joi-oid');
 const express = require('express');
 const app = express();
 
 require("./startup/logging")();
+require("./startup/cors")(app);
 require("./startup/routes")(app);
 require("./startup/db")();
 require("./startup/config")();

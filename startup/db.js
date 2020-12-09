@@ -6,6 +6,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 const config = require('config');
 
+
 module.exports = () => {
     const db = config.get('db');
     mongoose.connect(db)
