@@ -1,7 +1,9 @@
 const {User} = require('../../../models/user');
 const {Rental} = require('../../../models/rental');
+const {Movie} = require('../../../models/movie');
 const mongoose = require('mongoose');
 const request = require('supertest');
+const moment = require('moment');
 
 describe('/api/returns', () => {
     let server;
@@ -9,6 +11,8 @@ describe('/api/returns', () => {
     let movieId;
     let rental;
     let token;
+    let movie;
+
     const exec = () => {
         return request(server)
         .post('/api/returns')
@@ -23,6 +27,15 @@ describe('/api/returns', () => {
         movieId = mongoose.Types.ObjectId();
         token = new User().generateAuthToken();
 
+        movie = new Movie({
+            _id: movieId,
+            title: '12345',
+            dailyRentalRate: 2,
+            genre: { name: '12345' },
+            numberInStock: 10
+        });
+        await movie.save();
+
         rental = new Rental({
             customer: {
                 _id: customerId,
@@ -32,7 +45,7 @@ describe('/api/returns', () => {
             movie: {
                 _id: movieId,
                 title: '12345',
-                dailyRentalRate: 2
+                dailyRentalRate: 2,
             },
         });
         await rental.save();
@@ -40,6 +53,7 @@ describe('/api/returns', () => {
     afterEach(async () => { 
         await server.close(); 
         await Rental.deleteMany({});   
+        await Movie.deleteMany({});   
   });
 
 
@@ -100,5 +114,24 @@ describe('/api/returns', () => {
         const diff = new Date() - rentalInDb.dateReturned;
 
         expect(diff).toBeLessThan(10 * 1000); // 10 sec x 1000 ms
+    });  
+
+    it('should set the rentalFee if input is valid',async () => {
+        rental.dateOut = moment().add(-7, 'days').toDate();
+        await rental.save();
+
+        const res = await exec();
+
+        const rentalInDb = await Rental.findById(rental._id);
+
+        expect(rentalInDb.rentalFee).toBe(14); // 10 sec x 1000 ms
+    });  
+
+    it('should increase the movie stock',async () => {
+        const res = await exec();
+
+        const movieInDb = await Movie.findById(movieId);
+
+        expect(movieInDb.numberInStock).toBe(movie.numberInStock + 1);
     });  
 });
