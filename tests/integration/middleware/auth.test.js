@@ -3,7 +3,11 @@ const {Genre} = require('../../../models/genre');
 const request = require('supertest');
 
 describe('auth middleware', () => {
-  beforeEach(() => { server = require('../../../index'); })
+
+
+  beforeEach(() => { 
+      server = require('../../../index');
+     })
   afterEach(async () => { 
     await Genre.deleteMany({});
     await server.close(); 
@@ -21,10 +25,12 @@ describe('auth middleware', () => {
   beforeEach(() => {
     token = new User().generateAuthToken();
   });
+
     
-    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑PIPELINE↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-    //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓TESTS↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-    it('should return 401 if no token is provided', async () => {
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑PIPELINE↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓TESTS↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    
+    it('should return 401 if no token is provided',async () => {
         token = ''; 
     
         const res = await exec();

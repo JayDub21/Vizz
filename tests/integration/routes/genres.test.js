@@ -70,17 +70,17 @@ describe('/api/genres', () => {
         .send({ name });
     }
 
-    beforeEach(async () => {
-      token = await new User().generateAuthToken();      
+    beforeEach( () => {
+      token = new User().generateAuthToken();      
       name = 'genre1'; 
     })
 
     it('should return 401 if client is not logged in', async () => {
-      token = ' '; 
+        token = ''; 
 
-      const res = await exec();
-
-    expect(res.status).toBe(401);
+        const res = await exec();
+        
+        expect(res.status).toBe(401);
     });
 
     it('should return 400 if genre is less than 5 characters', async () => {
