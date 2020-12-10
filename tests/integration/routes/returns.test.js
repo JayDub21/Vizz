@@ -33,7 +33,7 @@ describe('/api/returns', () => {
                 _id: movieId,
                 title: '12345',
                 dailyRentalRate: 2
-            }
+            },
         });
         await rental.save();
     })
@@ -86,8 +86,19 @@ describe('/api/returns', () => {
     });  
 
     it('should return 200 for a valid request',async () => {
+        
         const res = await exec();
 
         expect(res.status).toBe(200);
+    });  
+
+    it('should set the return date if input is valid',async () => {
+        const res = await exec();
+
+        const rentalInDb = await Rental.findById(rental._id);
+
+        const diff = new Date() - rentalInDb.dateReturned;
+
+        expect(diff).toBeLessThan(10 * 1000); // 10 sec x 1000 ms
     });  
 });
