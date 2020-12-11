@@ -3,6 +3,7 @@ const config = require("config");
 const Joi = require('joi-oid');
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 require('./startup/logging')();
 require('./startup/routes')(app);
