@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "vizz_jwtPrivateKey"
+    "jwtPrivateKey": "vizz_jwtPrivateKey",
+    "MONGODB_URI": "MONGODB_URI"
 }

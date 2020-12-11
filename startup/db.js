@@ -6,9 +6,16 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 const config = require('config');
 
-
 module.exports = () => {
-    const db = config.get('db');
-    mongoose.connect(db)
-    .then(() => winston.info(`Connected to ${db}...`));
+   
+    // const db = config.get('db');
+
+    // mongoose.connect(MONGODB_URI)
+    // .then(() => winston.info(`Connected to ${db}...`));
+
+    mongoose.connect(
+        MONGODB_URI || "mongodb://localhost/vizz")
+        .then(() => console.log(`Connected to ${MONGODB_URI}...`))
+        .catch(err => console.log(err));
 }
+
