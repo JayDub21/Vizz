@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --testEnvironment=node --verbose --maxWorkers=1",
     "start": "npm run start:prod || npm run start:dev",
-    "start:prod": "node index.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:prod": "set NODE_ENV=default&& node index.js",
+    "start:dev": "set NODE_ENV=test&& nodemon index.js",
     "client": "cd client && npm run start",
     "seed": "node scripts/seed.js",
     "install": "cd client && npm install",
