@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
+// mongoose.set('useFindAndModify', false);
 const config = require('config');
 require('dotenv').config();
 
 
 
 module.exports = () => {
-    // const db = config.get('db');
+    const db = config.get('db');
     // function switcher() {
     //     if(process.env.NODE_ENV == 'production'){
     //         return process.env.MONGODB_URI
@@ -19,8 +19,9 @@ module.exports = () => {
     //         return db;
     //     }
     // };
-    mongoose.connect(MONGODB_URI);
-    // .then(() => winston.info(`Connected to ${switcher()}...`));
+
+    mongoose.connect(process.env.MONGODB_URI || db )
+    .then(() => winston.info(`Connected to ${process.env.MONGODB_URI}...`));
 }
 
 

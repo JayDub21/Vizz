@@ -45,6 +45,25 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model('User', userSchema);
 
+
+// Example entry to test if User reaches Atlas db 
+const exUser = {
+    name: 'JayDub',
+    email: 'JayDub@gmail.com',
+    password: 'examplePassword',
+    isAdmin: true
+};
+
+const newExUser = new User(exUser);
+
+// newExUser.save((error) => {
+//     if(error) {
+//         console.log('newExUser DID NOT save');
+//     } else {
+//         console.log('newExUser SAVED! :)');
+//     }
+// });
+
 function validateUser (user) {
     // Joi.object and schema.validate is new way to write
     const schema = Joi.object({
