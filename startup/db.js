@@ -5,7 +5,7 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useNewUrlParser', true);
 // mongoose.set('useFindAndModify', false);
 const config = require('config');
-require('dotenv').config();
+require('dotenv').config({ silent: process.env.NODE_ENV === 'production' });
 
 
 
