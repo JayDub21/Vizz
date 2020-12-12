@@ -14,7 +14,7 @@ module.exports = () => {
     const db = config.get('db');
     function switcher() {
         if(process.env.NODE_ENV == 'production'){
-            const client = new MongoClient(MONGOOSE_URI, { useNewUrlParser: true });
+            const client = new MongoClient(MONGODB_URI, { useNewUrlParser: true });
             client.connect(err => {
               const collection = client.db("test").collection("devices");
               // perform actions on the collection object
