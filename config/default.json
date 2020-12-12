@@ -1,6 +1,5 @@
 {
     "jwtPrivateKey": "",
-    "MONGODB_URI": "MONGODB_URI",
     "db": "mongodb://localhost/vizz",
     "port": "3900"
 }

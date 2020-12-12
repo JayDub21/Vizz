@@ -10,7 +10,9 @@ require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/config')();
 
-
+app.get('/', (req, res) => {
+    res.send('Hello World!!');
+  });
 
 const port = process.env.PORT || config.get('port');
 const server = app.listen(port, () =>
