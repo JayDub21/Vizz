@@ -8,13 +8,7 @@ const MongoClient = require('mongodb').MongoClient;
 const config = require('config');
 require('dotenv').config();
 
-module.exports = () => {
-   
 
-    mongoose.connect(process.env.MONGODB_URI)
-    .then(() => winston.info(`Connected to ${process.env.MONGODB_URI}...`));
-
-}
 
 module.exports = () => {
     const db = config.get('db');
