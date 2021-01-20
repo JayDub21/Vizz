@@ -1,6 +1,6 @@
 {
-    "jwtPrivateKey": "",
-    "db": "mongodb://localhost/vizz",
-    "port": "3900"
+  "jwtPrivateKey": "",
+  "db": "mongodb://localhost/vizz",
+  "port": "3900",
+  "requiresAuth": false
 }
-
