@@ -1,5 +1,5 @@
-# Vizz
+# Vizz NodeJS BackEnd
 
-## A Template for Express App with Jest Testing & Middleware
+## Built using Express with Jest Testing & Middleware
 
 ### Basic Mongoose Models with salted bcrypt password in User model.
