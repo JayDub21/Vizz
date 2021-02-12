@@ -24,10 +24,7 @@ const userSchema = new mongoose.Schema({
     maxlength: 1024,
   },
   isAdmin: Boolean,
-  favorites: {
-    type: Array,
-    required: false,
-  },
+  favorites: [[Number]],
 });
 
 // To embed the auth / token into User model
