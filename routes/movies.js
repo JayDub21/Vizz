@@ -5,6 +5,7 @@ const admin = require('../middleware/admin');
 const validateObjectId = require('../middleware/validateObjectId');
 const moment = require('moment');
 const express = require('express');
+const { User } = require('../models/user');
 const router = express.Router();
 
 router.get('/', async (req, res) => {

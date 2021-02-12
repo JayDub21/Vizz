@@ -24,7 +24,10 @@ const userSchema = new mongoose.Schema({
     maxlength: 1024,
   },
   isAdmin: Boolean,
-  favorites: [[Number]],
+  favorites: {
+    type: String,
+    unique: true,
+  },
 });
 
 // To embed the auth / token into User model
@@ -58,6 +61,7 @@ validateUser = (user) => {
     name: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(5).max(255).required(),
+    favorites: Joi.string(),
   });
   return schema.validate(user);
 };

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User, validate } = require('../models/user');
 const express = require('express');
+const { route } = require('./auth');
 const router = express.Router();
 
 router.get('/me', auth, async (req, res) => {
